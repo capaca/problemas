@@ -1,7 +1,0 @@
-class Controlador
-	
-	def initialize arquivo
-		
-	end
-	
-end
