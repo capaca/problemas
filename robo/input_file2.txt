@@ -1,0 +1,5 @@
+10 10
+0 0 N
+MMMRMMM
+T 1 3
+LMMM
