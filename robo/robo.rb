@@ -1,6 +1,8 @@
+class MoverAlemDoLimiteException < Exception 
+end
+
 class Robo
-	
-	@@MSG_ERRO = "Não vou me mover além dos limites..."
+	DIRECOES = ['N','L','S','O']
 	
 	def initialize posicao_x, posicao_y, direcao, limite_x, limite_y
 		@posicao_x = posicao_x
@@ -15,38 +17,14 @@ class Robo
 	def teletransportar x, y
 		self.posicao_x = x
 		self.posicao_y = y
-	rescue
-		puts @@MSG_ERRO
 	end
 	
 	def virar_para_esquerda
-		@direcao = case @direcao
-			when 'N'
-				'L'
-			when 'L'
-				'S'
-			when 'S'
-				'O'
-			when 'O'
-				'N'
-			else	
-				throw :error
-		end
+		@direcao = calcular_direcao +1
 	end
 	
 	def virar_para_direita
-		@direcao = case @direcao
-			when 'N'
-				'O'
-			when 'O'
-				'S'
-			when 'S'
-				'L'
-			when 'L'
-				'N'
-			else	
-				raise "error"
-		end
+		@direcao = calcular_direcao -1
 	end
 	
 	def mover_para_frente
@@ -59,11 +37,7 @@ class Robo
 			self.posicao_y= @posicao_y - 1
 		when 'L'
 			self.posicao_x= @posicao_x - 1
-		else	
-			raise "erro"
 		end
-	rescue
-		puts @@MSG_ERRO
 	end
 	
 	def posicao
@@ -71,13 +45,21 @@ class Robo
 	end
 	
 	private 
+	def calcular_direcao n
+		DIRECOES[(DIRECOES.index(@direcao)+n) % DIRECOES.size] 
+	end
+	
 	def posicao_x= x
-		raise "erro" if x > @limite_x or x < 0
+		lancar_erro if x > @limite_x or x < 0
 		@posicao_x = x
 	end
 	
 	def posicao_y= y
-		raise "erro" if y > @limite_y or y < 0
+		lancar_erro if y > @limite_y or y < 0
 		@posicao_y = y
+	end
+	
+	def lancar_erro
+		raise MoverAlemDoLimiteException.new "Não é possivel mover o robo para fora dos limites determinados."
 	end
 end
