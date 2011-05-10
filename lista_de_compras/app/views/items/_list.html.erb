@@ -1,0 +1,20 @@
+<table>
+  <tr>
+    <th>Produto</th>
+    <th>Quantidade</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<%= link_to "Adicionar item", new_lista_item_path(@lista) %>
+
+<% @lista.items.each do |item| %>
+  <tr>
+    <td><%= item.produto.nome %></td>
+    <td><%= item.quantidade %></td>
+    <td><%= link_to 'Editar', edit_lista_item_path(@lista, item) %></td>
+    <td><%= link_to 'Excluir', [@lista, item], :confirm => 'Você deseja realmente excluir o item da lista?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

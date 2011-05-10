@@ -1,0 +1,23 @@
+<h1>Listas de compras</h1>
+
+<table>
+  <tr>
+    <th>Descrição</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @listas.each do |lista| %>
+  <tr>
+    <td><%= lista.descricao %></td>
+    <td><%= link_to 'Detalhar', lista %></td>
+    <td><%= link_to 'Editar', edit_lista_path(lista) %></td>
+    <td><%= link_to 'Excluir', lista, :confirm => 'Você deseja realmente excluir a lista?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nova lista', new_lista_path %>

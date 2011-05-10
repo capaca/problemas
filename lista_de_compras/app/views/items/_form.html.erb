@@ -1,0 +1,27 @@
+<%= form_for [@lista, @item] do |f| %>
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> impediram a item de ser salva:</h2>
+
+      <ul>
+      <% @item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Produto %><br />
+    <%= select_tag "item[produto_id]", options_from_collection_for_select(@produtos, :id, :nome) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Quantidade %><br />
+    <%= f.text_field :quantidade %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Salvar" %>
+  </div>
+<% end %>

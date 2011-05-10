@@ -1,0 +1,22 @@
+<%= form_for(@lista) do |f| %>
+  <% if @lista.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lista.errors.count, "error") %> impediram a lista de ser salva:</h2>
+
+      <ul>
+      <% @lista.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :descricao %><br />
+    <%= f.text_area :descricao %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Salvar" %>
+  </div>
+<% end %>
