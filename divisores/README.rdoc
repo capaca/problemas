@@ -2,12 +2,10 @@ Para calcular quantos divisores um número tem execute na linha de comando:
 
 ruby contar.rb [numero]
 
-# Ex:
-# ruby contar.rb 10
+# Exemplo: ruby contar.rb 10
 
 Para calcular qual número tem mais divisores execute na linha de comando:
 
 ruby  mais_divisores.rb [numero1] [numero2]
 
-# Ex:
-# ruby mais_divisores.rb 10 31
+# Exemplo: ruby mais_divisores.rb 10 31

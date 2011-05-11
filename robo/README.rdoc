@@ -2,5 +2,4 @@ Para descobrir qual a posição final do robo execute na linha de comando:
 
 ruby main.rb [path_to_input_file]
 
-# Ex:
-# ruby main.rb input_file.txt 
+# Exemplo: ruby main.rb input_file.txt 
