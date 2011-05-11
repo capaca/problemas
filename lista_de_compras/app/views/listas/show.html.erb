@@ -1,11 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Descricao:</b>
+<h2>
   <%= @lista.descricao %>
-</p>
+</h2>
 
 <%= render 'items/list' %>
 
-<%= link_to 'Editar', edit_lista_path(@lista) %> |
-<%= link_to 'Voltar', listas_path %>
+<br/>
+
+<%= link_to "Adicionar item", new_lista_item_path(@lista) %>
+
+<br/>
+<br/>
+
+<div>
+  <%= link_to 'Editar', edit_lista_path(@lista) %> |
+  <%= link_to 'Voltar', listas_path %>
+<div>
+

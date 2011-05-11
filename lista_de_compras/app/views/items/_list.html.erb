@@ -1,20 +1,30 @@
-<table>
-  <tr>
-    <th>Produto</th>
-    <th>Quantidade</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div>
+<% if @lista.items.size > 0 %>
+  <table>
+    <tr>
+      <th>Produto</th>
+      <th>Quantidade</th>
+      <th>Valor</th>
+      <th width="8%">Ações</th>
+    </tr>
 
-<%= link_to "Adicionar item", new_lista_item_path(@lista) %>
 
-<% @lista.items.each do |item| %>
-  <tr>
-    <td><%= item.produto.nome %></td>
-    <td><%= item.quantidade %></td>
-    <td><%= link_to 'Editar', edit_lista_item_path(@lista, item) %></td>
-    <td><%= link_to 'Excluir', [@lista, item], :confirm => 'Você deseja realmente excluir o item da lista?', :method => :delete %></td>
-  </tr>
+    <% @lista.items.each do |item| %>
+      <tr>
+        <td><%= item.produto.nome %></td>
+        <td><%= item.quantidade %></td>
+        <td>R$ <%= item.valor %></td>
+        <td><%= link_to 'Excluir', [@lista, item], :confirm => 'Você deseja realmente excluir o item da lista?', :method => :delete %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="4" class="total">
+        Total: R$ <%= @lista.total %>
+      </td>
+    </tr>
+  </table>
+<% else %>
+  <center><em>Nenhum item adicionado a lista.</em></center>
 <% end %>
-</table>
+</div>
+

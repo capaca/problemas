@@ -1,23 +1,24 @@
 <h1>Listas de compras</h1>
 
+<% if @listas and @listas.size > 0 %>
 <table>
   <tr>
     <th>Descrição</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th colspan="3">Ações</th>
   </tr>
 
 <% @listas.each do |lista| %>
   <tr>
     <td><%= lista.descricao %></td>
-    <td><%= link_to 'Detalhar', lista %></td>
-    <td><%= link_to 'Editar', edit_lista_path(lista) %></td>
-    <td><%= link_to 'Excluir', lista, :confirm => 'Você deseja realmente excluir a lista?', :method => :delete %></td>
+    <td width="10%"><%= link_to 'Detalhar', lista %></td>
+    <td width="8%"><%= link_to 'Editar', edit_lista_path(lista) %></td>
+    <td width="8%"><%= link_to 'Excluir', lista, :confirm => 'Você deseja realmente excluir a lista?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
-
+<% else %>
+  <center><em>Nenhuma lista adicionada.</em></center>
+<% end %>
 <br />
 
 <%= link_to 'Nova lista', new_lista_path %>

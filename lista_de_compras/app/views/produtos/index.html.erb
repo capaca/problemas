@@ -1,13 +1,12 @@
 <h1>Produtos</h1>
 
+<% if @produtos and @produtos.size > 0 %>
 <table>
   <tr>
     <th>Nome</th>
     <th>Descricao</th>
     <th>Valor</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th colspan="3">Ações</th>
   </tr>
 
 <% @produtos.each do |produto| %>
@@ -15,10 +14,13 @@
     <td><%= produto.nome %></td>
     <td><%= produto.descricao %></td>
     <td><%= produto.valor %></td>
-    <td><%= link_to 'Detalhar', produto %></td>
-    <td><%= link_to 'Editar', edit_produto_path(produto) %></td>
-    <td><%= link_to 'Excluir', produto, :confirm => 'Você deseja realmente excluir o produto?', :method => :delete %></td>
+    <td width="10%"><%= link_to 'Detalhar', produto %></td>
+    <td width="8%"><%= link_to 'Editar', edit_produto_path(produto) %></td>
+    <td width="8%"><%= link_to 'Excluir', produto, :confirm => 'Você deseja realmente excluir o produto?', :method => :delete %></td>
   </tr>
+<% end %>
+<% else %>
+  <center><em>Nenhum produto disponível.</em></center>
 <% end %>
 </table>
 

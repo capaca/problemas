@@ -10,17 +10,20 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :Produto %><br />
-    <%= select_tag "item[produto_id]", options_from_collection_for_select(@produtos, :id, :nome) %>
-  </div>
-
-  <div class="field">
-    <%= f.label :Quantidade %><br />
-    <%= f.text_field :quantidade %>
-  </div>
-
+  
+  <table>
+    <tr>
+      <td>
+        <%= f.label :Produto %><br />
+        <%= select_tag "item[produto_id]", options_from_collection_for_select(@produtos, :id, :label) %>
+      </td>
+      <td>
+        <%= f.label :Quantidade %><br />
+        <%= f.text_field :quantidade %>
+      </td>
+    </tr>
+  </table>
+  <br/>
   <div class="actions">
     <%= f.submit "Salvar" %>
   </div>

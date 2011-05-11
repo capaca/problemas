@@ -34,12 +34,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  # GET /items/1/edit
-  def edit
-    @produtos = Produto.all
-    @item = Item.find(params[:id])
-  end
-
   # POST /items
   # POST /items.xml
   def create
@@ -49,26 +43,11 @@ class ItemsController < ApplicationController
     
     respond_to do |format|
       if @item.save
-        format.html { redirect_to(lista_path(@lista), :notice => 'Item was successfully created.') }
+        format.html { redirect_to(lista_path(@lista), :notice => 'O Item foi criado com sucesso.') }
         format.xml  { render :xml => @item, :status => :created, :location => lista_item_path(@lista, @lista) }
       else
+        @produtos = Produto.all
         format.html { render :action => "new" }
-        format.xml  { render :xml => @item.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /items/1
-  # PUT /items/1.xml
-  def update
-    @item = Item.find(params[:id])
-
-    respond_to do |format|
-      if @item.update_attributes(params[:item])
-        format.html { redirect_to(@item, :notice => 'Item was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
         format.xml  { render :xml => @item.errors, :status => :unprocessable_entity }
       end
     end
@@ -77,11 +56,13 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.xml
   def destroy
+    @lista = Lista.find(params[:lista_id])
     @item = Item.find(params[:id])
     @item.destroy
+    
 
     respond_to do |format|
-      format.html { redirect_to(items_url) }
+      format.html { redirect_to(lista_url(@lista)) }
       format.xml  { head :ok }
     end
   end
